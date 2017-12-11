@@ -1,5 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
+BRANCH = "v2015.04/rcar-3.5.9"
+SRCREV = "24add58d915191d901915a6a8cc44faa748fcaa2"
+
 SRC_URI_append = " \
     file://0001-net-phy-support-fixed-PHY.patch \
     ${@bb.utils.contains('MACHINE_FEATURES', 'h3ulcb-had', ' file://0002-net-ravb-remove-APSR-quirk.patch', '', d)} \
@@ -15,7 +18,6 @@ SRC_URI_append = " \
     file://0013-mtd-spi-QSPI-flash-support.patch \
     file://0014-arm-renesas-Add-Renesas-R8A7797-SoC-support.patch \
     file://0015-board-renesas-Add-V3M-Eagle-board.patch \
-    file://0016-tools-fix-build-fail.patch \
     file://0017-board-renesas-Add-V3MSK-board.patch \
     file://0021-ARM-rcar_gen3-Add-RPC-flash-definitions.patch \
     file://0022-mtd-Add-RPC-HyperFlash-support.patch \
