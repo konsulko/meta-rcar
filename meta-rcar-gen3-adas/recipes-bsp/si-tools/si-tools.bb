@@ -12,6 +12,8 @@ SRC_URI = " \
 
 S = "${WORKDIR}/si-tools"
 
+EXTRA_OEMAKE_append = " 'LDFLAGS=${LDFLAGS}'"
+
 do_install() {
     install -d ${D}${bindir}
     install -d ${D}/lib/firmware/radio/
