@@ -3,6 +3,9 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 COMPATIBLE_MACHINE_eagle = "eagle"
 COMPATIBLE_MACHINE_v3msk = "v3msk"
 
+BRANCH = "v4.9/rcar-3.5.9"
+SRCREV = "2c20c9881d53f1b5c7a3ebf55bb83ec15902d0d0"
+
 SRC_URI_append = " \
     ${@bb.utils.contains('MACHINE_FEATURES', 'h3ulcb-had', ' file://hyperflash.cfg', '', d)} \
     ${@base_conditional("SDHI_SEQ", "1", " file://sdhi_seq.cfg", "", d)} \
