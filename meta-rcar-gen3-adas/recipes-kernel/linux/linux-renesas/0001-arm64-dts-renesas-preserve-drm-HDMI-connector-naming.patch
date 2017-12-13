@@ -1,0 +1,54 @@
+From df5348a8ec6f611fe3fc51d7c12898b8830d89d3 Mon Sep 17 00:00:00 2001
+From: Matt Porter <mporter@konsulko.com>
+Date: Wed, 13 Dec 2017 12:49:20 -0500
+Subject: [PATCH] arm64: dts: renesas: preserve drm HDMI connector naming on KF
+
+Kingfisher adds encoders on ports 0 and 2 of the R-Car
+display unit. The bare ULCB SK has only an HDMI encoder
+in use on port 1. When the system is booted with an SK
+dtb, port 1's HDMI encoder is assigned as HDMI-A-1 because
+it is the first (and only) encoder present. When booting
+a KF dtb, port 0's HDMI encoder preceeds port1 in the dtb due
+to incremental ordering of the endpoint port nodes. This causes
+the KF HDMI to be assigned HDMI-A-1 and the SK HDMI to be assigned
+as HDMI-A-2. In order to preserve the SK's HDMI output naming as
+connector HDMI-A-1, reorder the endpoint port nodes so that port1
+is first.
+
+Change-Id: Ibbb1975c2383a526a54c257fb7d68d32a042d468
+Signed-off-by: Matt Porter <mporter@konsulko.com>
+---
+ arch/arm64/boot/dts/renesas/r8a7796.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a7796.dtsi b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+index bf37b8aa0e2f..e3a5c25bc3da 100644
+--- a/arch/arm64/boot/dts/renesas/r8a7796.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+@@ -2391,11 +2391,6 @@
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 
+-				port@0 {
+-					reg = <0>;
+-					du_out_rgb: endpoint {
+-					};
+-				};
+ 				port@1 {
+ 					reg = <1>;
+ 					du_out_hdmi0: endpoint {
+@@ -2406,6 +2401,11 @@
+ 					du_out_lvds0: endpoint {
+ 					};
+ 				};
++				port@0 {
++					reg = <0>;
++					du_out_rgb: endpoint {
++					};
++				};
+ 			};
+ 		};
+ 
+-- 
+2.11.0
+

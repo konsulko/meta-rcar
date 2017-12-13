@@ -80,6 +80,7 @@ SRC_URI_append = " \
     file://0079-Revert-dmaengine-rcar-dmac-use-TCRB-instead-of-TCR-f.patch \
     file://0080-dmaengine-rcar-dmac-ensure-CHCR-DE-bit-is-actually-0.patch \
     file://0081-dmaengine-rcar-dmac-use-TCRB-instead-of-TCR-for-resi.patch \
+    file://0001-arm64-dts-renesas-preserve-drm-HDMI-connector-naming.patch \
 "
 
 SRC_URI_append_r8a7797 = " \
